@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador Tributário — Agro Tycoon (Steam)</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #273549;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.14);
+      --blue: #38bdf8;
+      --amber: #f59e0b;
+      --purple: #a78bfa;
+      --danger: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 24px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .btn-reset {
+      background: var(--surface-alt);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+
+    .btn-reset:hover {
+      background: #334155;
+    }
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .grid-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .panel h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-divider {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--blue);
+      font-weight: 700;
+      margin: 18px 0 10px 0;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-divider:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .control-group {
+      margin-bottom: 12px;
+    }
+
+    .control-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    label span.val-badge {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      background: var(--bg);
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .checkbox-row input {
+      accent-color: var(--accent);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .kpi-card.winner {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.12) 0%, var(--surface) 100%);
+    }
+
+    .kpi-title {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .kpi-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .kpi-sub {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .kpi-sub.muted {
+      color: var(--muted);
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    th, td {
+      padding: 11px 14px;
+      text-align: right;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th:first-child, td:first-child {
+      text-align: left;
+    }
+
+    th {
+      background: var(--surface-alt);
+      color: var(--text);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    tr.group-header td {
+      background: rgba(56, 189, 248, 0.08);
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    tr.subtotal td {
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    tr.final-row td {
+      font-weight: 700;
+      font-size: 0.92rem;
+      background: rgba(34, 197, 94, 0.08);
+      color: #86efac;
+    }
+
+    tr.final-row-alt td {
+      font-weight: 700;
+      font-size: 0.92rem;
+      background: rgba(148, 163, 184, 0.06);
+    }
+
+    .neg {
+      color: var(--danger);
+    }
+
+    .chart-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .chart-box h3 {
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .bar-group {
+      margin-bottom: 18px;
+    }
+
+    .bar-group-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 195px 1fr 110px;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      font-size: 0.8rem;
+    }
+
+    .bar-track {
+      background: var(--bg);
+      height: 16px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.25s ease;
+    }
+
+    .bar-val {
+      text-align: right;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 14px;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Simulador Tributário — Agro Tycoon (Steam)</h1>
+        <p>Comparativo interativo: Simples Nacional (Anexo III Fator R vs. Anexo V) vs. Lucro Presumido (CNAE 6203-1/00)</p>
+      </div>
+      <button class="btn-reset" onclick="resetDefaults()">Restaurar Padrões</button>
+    </header>
+
+    <div class="grid-layout">
+      <!-- Painel de Controles -->
+      <aside class="panel">
+        <div class="section-divider">1. Vendas & Preços</div>
+
+        <div class="control-group">
+          <label>Wishlists no Lançamento <span class="val-badge" id="lblWishlists">5.400</span></label>
+          <input type="range" id="wishlistsRange" min="1000" max="50000" step="100" value="5400" oninput="syncInput('wishlists', this.value)" />
+          <input type="number" id="wishlists" value="5400" step="100" oninput="syncRange('wishlists', this.value)" style="margin-top:6px;" />
+        </div>
+
+        <div class="control-row">
+          <div class="control-group">
+            <label>Preço Global (US$)</label>
+            <input type="number" id="priceUsd" value="14.99" step="0.50" oninput="calculate()" />
+          </div>
+          <div class="control-group">
+            <label>Preço Brasil (R$)</label>
+            <input type="number" id="priceBrl" value="46.99" step="1.00" oninput="calculate()" />
+          </div>
+        </div>
+
+        <div class="control-row">
+          <div class="control-group">
+            <label>Dólar (R$/US$)</label>
+            <input type="number" id="fxRate" value="5.90" step="0.05" oninput="calculate()" />
+          </div>
+          <div class="control-group">
+            <label>Refunds / Devol. (%)</label>
+            <input type="number" id="refundPct" value="0" step="0.5" min="0" max="50" oninput="calculate()" />
+          </div>
+        </div>
+
+        <div class="section-divider">2. Distribuição Geográfica (%)</div>
+        <div class="control-row">
+          <div class="control-group">
+            <label>Fatia EUA (%)</label>
+            <input type="number" id="shareUs" value="12.99" step="0.5" min="0" max="100" oninput="calculate()" />
+          </div>
+          <div class="control-group">
+            <label>Fatia Brasil (%)</label>
+            <input type="number" id="shareBr" value="16.16" step="0.5" min="0" max="100" oninput="calculate()" />
+          </div>
+        </div>
+        <div style="font-size:0.78rem; color:var(--muted); margin-bottom:6px;">
+          Resto do Mundo (Europa/Ásia/etc.): <strong id="lblShareOther" style="color:var(--text);">70,85%</strong>
+        </div>
+
+        <div class="section-divider">3. Taxas Steam, IRS & Câmbio</div>
+        <div class="control-row">
+          <div class="control-group">
+            <label>Taxa Steam (%)</label>
+            <input type="number" id="steamCut" value="30" step="1" oninput="calculate()" />
+          </div>
+          <div class="control-group">
+            <label>Retenção IRS EUA (%)</label>
+            <input type="number" id="irsCut" value="30" step="1" oninput="calculate()" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Spread Câmbio Husky/Remessa (%)</label>
+          <input type="number" id="fxSpread" value="1.0" step="0.1" oninput="calculate()" />
+        </div>
+
+        <div class="section-divider">4. Alíquotas Brasil (Exportação)</div>
+        <div class="control-row">
+          <div class="control-group">
+            <label>Simples Anexo III (%)</label>
+            <input type="number" id="sn3Rate" value="3.10" step="0.1" oninput="calculate()" />
+          </div>
+          <div class="control-group">
+            <label>Simples Anexo V (%)</label>
+            <input type="number" id="sn5Rate" value="9.50" step="0.1" oninput="calculate()" />
+          </div>
+        </div>
+        <div class="control-row">
+          <div class="control-group">
+            <label>Presumido IRPJ+CSLL (%)</label>
+            <input type="number" id="lpRate" value="7.68" step="0.1" oninput="calculate()" />
+          </div>
+          <div class="control-group">
+            <label>Honorário Contábil (R$)</label>
+            <input type="number" id="accountingFee" value="0" step="50" oninput="calculate()" />
+          </div>
+        </div>
+
+        <label class="checkbox-row">
+          <input type="checkbox" id="cltCeiling" checked onchange="calculate()" />
+          <span>Já recolho teto do INSS na CLT (sem 11% INSS no pró-labore)</span>
+        </label>
+      </aside>
+
+      <!-- Área Principal de Resultados -->
+      <main>
+        <div class="kpi-grid" id="kpiGrid"></div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Linha do Fluxo / Regime Tributário</th>
+                <th>Conservador (10% conv.)</th>
+                <th>Base (15% conv.)</th>
+                <th>Otimista (20% conv.)</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="chart-box">
+          <h3>Comparativo Visual — Líquido Final no Caixa da Empresa (R$)</h3>
+          <div id="chartContainer"></div>
+          <p class="note">
+            * Premissas: Toda remessa recebida da Valve (EUA) entra como exportação de software (isenta de PIS, COFINS e ISS). No Simples Nacional Anexo III, aplica-se pró-labore de 28% da NFS-e para atingir o Fator R; quando marcado o teto INSS via CLT, considera-se apenas estimativa de IRRF progressivo sobre o pró-labore acima de R$ 5.000. No Lucro Presumido, inclui-se automaticamente adicional de 10% de IRPJ caso o lucro presumido exceda R$ 20.000/mês.
+          </p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const fmtBRL = (v) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    const fmtUSD = (v) => "US$ " + v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const fmtInt = (v) => Math.round(v).toLocaleString("pt-BR");
+
+    function syncInput(id, val) {
+      document.getElementById(id).value = val;
+      calculate();
+    }
+
+    function syncRange(id, val) {
+      const range = document.getElementById(id + "Range");
+      if (range) range.value = val;
+      calculate();
+    }
+
+    function resetDefaults() {
+      document.getElementById("wishlists").value = 5400;
+      document.getElementById("wishlistsRange").value = 5400;
+      document.getElementById("priceUsd").value = 14.99;
+      document.getElementById("priceBrl").value = 46.99;
+      document.getElementById("fxRate").value = 5.90;
+      document.getElementById("refundPct").value = 0;
+      document.getElementById("shareUs").value = 12.99;
+      document.getElementById("shareBr").value = 16.16;
+      document.getElementById("steamCut").value = 30;
+      document.getElementById("irsCut").value = 30;
+      document.getElementById("fxSpread").value = 1.0;
+      document.getElementById("sn3Rate").value = 3.10;
+      document.getElementById("sn5Rate").value = 9.50;
+      document.getElementById("lpRate").value = 7.68;
+      document.getElementById("accountingFee").value = 0;
+      document.getElementById("cltCeiling").checked = true;
+      calculate();
+    }
+
+    function calcIrrf(proLabore, hasCltCeiling) {
+      const inss = hasCltCeiling ? 0 : Math.min(proLabore * 0.11, 908.85);
+      const base = proLabore - inss;
+      // Estimativa simplificada tabela IRRF (isenção até R$ 5.000)
+      let irrf = 0;
+      if (base > 5000) {
+        irrf = (base - 5000) * 0.15;
+      }
+      return { inss, irrf };
+    }
+
+    function calculate() {
+      const wishlists = parseFloat(document.getElementById("wishlists").value) || 0;
+      document.getElementById("lblWishlists").textContent = fmtInt(wishlists);
+
+      const priceUsd = parseFloat(document.getElementById("priceUsd").value) || 0;
+      const priceBrl = parseFloat(document.getElementById("priceBrl").value) || 0;
+      const fxRate = parseFloat(document.getElementById("fxRate").value) || 1;
+      const refundPct = (parseFloat(document.getElementById("refundPct").value) || 0) / 100;
+
+      const shareUs = (parseFloat(document.getElementById("shareUs").value) || 0) / 100;
+      const shareBr = (parseFloat(document.getElementById("shareBr").value) || 0) / 100;
+      const shareOther = Math.max(0, 1 - shareUs - shareBr);
+      document.getElementById("lblShareOther").textContent = (shareOther * 100).toFixed(2).replace(".", ",") + "%";
+
+      const steamCut = (parseFloat(document.getElementById("steamCut").value) || 0) / 100;
+      const irsCut = (parseFloat(document.getElementById("irsCut").value) || 0) / 100;
+      const fxSpread = (parseFloat(document.getElementById("fxSpread").value) || 0) / 100;
+
+      const sn3Rate = (parseFloat(document.getElementById("sn3Rate").value) || 0) / 100;
+      const sn5Rate = (parseFloat(document.getElementById("sn5Rate").value) || 0) / 100;
+      const lpRate = (parseFloat(document.getElementById("lpRate").value) || 0) / 100;
+      const accountingFee = parseFloat(document.getElementById("accountingFee").value) || 0;
+      const hasCltCeiling = document.getElementById("cltCeiling").checked;
+
+      const convRates = [
+        { label: "Conservador (10% conv.)", rate: 0.10 },
+        { label: "Base (15% conv.)", rate: 0.15 },
+        { label: "Otimista (20% conv.)", rate: 0.20 }
+      ];
+
+      const scenarios = convRates.map((c) => {
+        const grossCopies = Math.round(wishlists * c.rate);
+        const netCopies = Math.round(grossCopies * (1 - refundPct));
+
+        const copiesUs = Math.round(netCopies * shareUs);
+        const copiesBr = Math.round(netCopies * shareBr);
+        const copiesOther = Math.max(0, netCopies - copiesUs - copiesBr);
+
+        const priceBrInUsd = priceBrl / fxRate;
+
+        const grossUsUsd = copiesUs * priceUsd;
+        const grossBrUsd = copiesBr * priceBrInUsd;
+        const grossOtherUsd = copiesOther * priceUsd;
+        const grossTotalUsd = grossUsUsd + grossBrUsd + grossOtherUsd;
+
+        const steamFeeUsd = grossTotalUsd * steamCut;
+        const afterSteamUs = grossUsUsd * (1 - steamCut);
+        const afterSteamNonUs = (grossBrUsd + grossOtherUsd) * (1 - steamCut);
+
+        const irsUsd = afterSteamUs * irsCut;
+        const remittanceUsd = (afterSteamUs - irsUsd) + afterSteamNonUs;
+
+        const invoiceBrl = remittanceUsd * fxRate;
+        const spreadBrl = invoiceBrl * fxSpread;
+        const netBankBeforeTaxBrl = invoiceBrl - spreadBrl;
+
+        // 1. Simples Nacional Anexo III (Fator R)
+        const sn3DasBrl = invoiceBrl * sn3Rate;
+        const proLaboreBrl = invoiceBrl * 0.28;
+        const { inss: proLaboreInss, irrf: proLaboreIrrf } = calcIrrf(proLaboreBrl, hasCltCeiling);
+        const sn3NetBrl = netBankBeforeTaxBrl - sn3DasBrl - proLaboreInss - proLaboreIrrf - accountingFee;
+
+        // 2. Simples Nacional Anexo V
+        const sn5DasBrl = invoiceBrl * sn5Rate;
+        const sn5NetBrl = netBankBeforeTaxBrl - sn5DasBrl - accountingFee;
+
+        // 3. Lucro Presumido Padrão (32% presunção -> 7.68% + adicional IRPJ 10% sobre lucro presumido > R$ 20k/mês)
+        const lpAddIrpj = Math.max(0, (invoiceBrl * 0.32 - 20000) * 0.10);
+        const lpStdTaxBrl = invoiceBrl * lpRate + lpAddIrpj;
+        const lpStdNetBrl = netBankBeforeTaxBrl - lpStdTaxBrl - accountingFee;
+
+        // 4. Lucro Presumido com Compensação IRS EUA (abate IRPJ/CSLL da fatia EUA)
+        const nonUsInvoiceBrl = afterSteamNonUs * fxRate;
+        const lpOffsetAddIrpj = Math.max(0, (nonUsInvoiceBrl * 0.32 - 20000) * 0.10);
+        const lpOffsetTaxBrl = nonUsInvoiceBrl * lpRate + lpOffsetAddIrpj;
+        const lpOffsetNetBrl = netBankBeforeTaxBrl - lpOffsetTaxBrl - accountingFee;
+
+        return {
+          label: c.label,
+          netCopies,
+          copiesUs,
+          copiesBr,
+          copiesOther,
+          grossTotalUsd,
+          steamFeeUsd,
+          irsUsd,
+          remittanceUsd,
+          invoiceBrl,
+          spreadBrl,
+          netBankBeforeTaxBrl,
+          sn3DasBrl,
+          proLaboreBrl,
+          proLaboreCharges: proLaboreInss + proLaboreIrrf,
+          sn3NetBrl,
+          sn5DasBrl,
+          sn5NetBrl,
+          lpStdTaxBrl,
+          lpStdNetBrl,
+          lpOffsetTaxBrl,
+          lpOffsetNetBrl
+        };
+      });
+
+      renderKPIs(scenarios[1]);
+      renderTable(scenarios);
+      renderChart(scenarios);
+    }
+
+    function renderKPIs(base) {
+      const regimes = [
+        { name: "Simples Anexo III (Fator R)", val: base.sn3NetBrl },
+        { name: "Simples Anexo V (Sem Fator R)", val: base.sn5NetBrl },
+        { name: "Lucro Presumido Padrão", val: base.lpStdNetBrl },
+        { name: "Presumido c/ Abatimento EUA", val: base.lpOffsetNetBrl }
+      ];
+      regimes.sort((a, b) => b.val - a.val);
+      const best = regimes[0];
+      const diffVsLp = base.sn3NetBrl - base.lpStdNetBrl;
+
+      document.getElementById("kpiGrid").innerHTML = `
+        <div class="kpi-card">
+          <div class="kpi-title">Vendas Base (15% conv.)</div>
+          <div class="kpi-value">${fmtInt(base.netCopies)} cópias</div>
+          <div class="kpi-sub muted">Bruto: ${fmtUSD(base.grossTotalUsd)}</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Remessa Líquida Valve</div>
+          <div class="kpi-value">${fmtUSD(base.remittanceUsd)}</div>
+          <div class="kpi-sub muted">NFS-e: ${fmtBRL(base.invoiceBrl)}</div>
+        </div>
+        <div class="kpi-card winner">
+          <div class="kpi-title">Melhor Regime (Cenário Base)</div>
+          <div class="kpi-value">${fmtBRL(best.val)}</div>
+          <div class="kpi-sub">${best.name}</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Simples III vs. Presumido</div>
+          <div class="kpi-value" style="color:${diffVsLp >= 0 ? 'var(--accent)' : 'var(--danger)'}">
+            ${diffVsLp >= 0 ? "+" : ""}${fmtBRL(diffVsLp)}
+          </div>
+          <div class="kpi-sub muted">${diffVsLp >= 0 ? "Economia no Simples Anexo III" : "Vantagem no Lucro Presumido"}</div>
+        </div>
+      `;
+    }
+
+    function renderTable(s) {
+      const row = (title, fn, cls = "") => `
+        <tr class="${cls}">
+          <td>${title}</td>
+          <td>${fn(s[0])}</td>
+          <td>${fn(s[1])}</td>
+          <td>${fn(s[2])}</td>
+        </tr>
+      `;
+
+      document.getElementById("tableBody").innerHTML = `
+        ${row("Cópias Líquidas (EUA / BR / Resto)", (x) => `<strong>${fmtInt(x.netCopies)}</strong> (${x.copiesUs} / ${x.copiesBr} / ${x.copiesOther})`)}
+        ${row("Receita Bruta Steam (US$)", (x) => fmtUSD(x.grossTotalUsd))}
+        ${row("(-) Taxa Steam", (x) => `<span class="neg">-${fmtUSD(x.steamFeeUsd)}</span>`)}
+        ${row("(-) Retenção IRS EUA (apenas fatia EUA)", (x) => `<span class="neg">-${fmtUSD(x.irsUsd)}</span>`)}
+        ${row("(=) Remessa Valve / Valor NFS-e (R$)", (x) => `${fmtUSD(x.remittanceUsd)} (${fmtBRL(x.invoiceBrl)})`, "subtotal")}
+        ${row("(-) Spread Câmbio", (x) => `<span class="neg">-${fmtBRL(x.spreadBrl)}</span>`)}
+        ${row("(=) Entrada em Conta PJ antes de Impostos", (x) => fmtBRL(x.netBankBeforeTaxBrl), "subtotal")}
+
+        <tr class="group-header"><td colspan="4">1. Simples Nacional — Anexo III (Fator R >= 28%)</td></tr>
+        ${row("(-) DAS Exportação", (x) => `<span class="neg">-${fmtBRL(x.sn3DasBrl)}</span>`)}
+        ${row("(-) Encargos s/ Pró-labore (28% fat.)", (x) => `<span class="neg">-${fmtBRL(x.proLaboreCharges)}</span>`)}
+        ${row("(=) Líquido Final — Simples Anexo III", (x) => fmtBRL(x.sn3NetBrl), "final-row")}
+
+        <tr class="group-header"><td colspan="4">2. Simples Nacional — Anexo V (Sem Fator R)</td></tr>
+        ${row("(-) DAS Exportação", (x) => `<span class="neg">-${fmtBRL(x.sn5DasBrl)}</span>`)}
+        ${row("(=) Líquido Final — Simples Anexo V", (x) => fmtBRL(x.sn5NetBrl), "final-row-alt")}
+
+        <tr class="group-header"><td colspan="4">3. Lucro Presumido (Base 32% — Licenciamento)</td></tr>
+        ${row("(-) IRPJ + CSLL Exportação", (x) => `<span class="neg">-${fmtBRL(x.lpStdTaxBrl)}</span>`)}
+        ${row("(=) Líquido Final — Lucro Presumido Padrão", (x) => fmtBRL(x.lpStdNetBrl), "final-row-alt")}
+
+        <tr class="group-header"><td colspan="4">4. Lucro Presumido (Com Compensação IRS EUA)</td></tr>
+        ${row("(-) IRPJ + CSLL apenas s/ fatia Não-EUA", (x) => `<span class="neg">-${fmtBRL(x.lpOffsetTaxBrl)}</span>`)}
+        ${row("(=) Líquido Final — Presumido c/ Abatimento", (x) => fmtBRL(x.lpOffsetNetBrl), "final-row-alt")}
+      `;
+    }
+
+    function renderChart(scenarios) {
+      const maxVal = Math.max(...scenarios.map((s) => Math.max(s.sn3NetBrl, s.sn5NetBrl, s.lpStdNetBrl, s.lpOffsetNetBrl, 1)));
+
+      const html = scenarios.map((s) => {
+        const bars = [
+          { label: "Simples Anexo III (Fator R)", val: s.sn3NetBrl, color: "#22c55e" },
+          { label: "Presumido c/ Abatimento EUA", val: s.lpOffsetNetBrl, color: "#38bdf8" },
+          { label: "Lucro Presumido Padrão", val: s.lpStdNetBrl, color: "#a78bfa" },
+          { label: "Simples Anexo V", val: s.sn5NetBrl, color: "#f59e0b" }
+        ];
+
+        return `
+          <div class="bar-group">
+            <div class="bar-group-title">${s.label} — ${fmtInt(s.netCopies)} cópias</div>
+            ${bars.map((b) => {
+              const pct = Math.max(2, (b.val / maxVal) * 100);
+              return `
+                <div class="bar-row">
+                  <div>${b.label}</div>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width:${pct}%; background:${b.color};"></div>
+                  </div>
+                  <div class="bar-val">${fmtBRL(b.val)}</div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("chartContainer").innerHTML = html;
+    }
+
+    calculate();
+  </script>
+</body>
+</html>
