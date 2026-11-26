@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulador Tributário — Agro Tycoon (Steam)</title>
+  <title>Simulador Tributário & Cauda Longa — Agro Tycoon (Steam)</title>
   <style>
     :root {
       --bg: #0f172a;
@@ -13,10 +13,10 @@
       --text: #f8fafc;
       --muted: #94a3b8;
       --accent: #22c55e;
-      --accent-soft: rgba(34, 197, 94, 0.14);
       --blue: #38bdf8;
       --amber: #f59e0b;
       --purple: #a78bfa;
+      --pink: #f472b6;
       --danger: #f87171;
     }
 
@@ -35,7 +35,7 @@
     }
 
     .container {
-      max-width: 1360px;
+      max-width: 1420px;
       margin: 0 auto;
     }
 
@@ -51,14 +51,13 @@
     }
 
     header h1 {
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       font-weight: 700;
-      color: var(--text);
     }
 
     header p {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
     .btn-reset {
@@ -70,7 +69,6 @@
       cursor: pointer;
       font-size: 0.85rem;
       font-weight: 600;
-      transition: background 0.15s;
     }
 
     .btn-reset:hover {
@@ -84,7 +82,7 @@
       align-items: start;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1080px) {
       .grid-layout {
         grid-template-columns: 1fr;
       }
@@ -97,23 +95,13 @@
       padding: 20px;
     }
 
-    .panel h2 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
     .section-divider {
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--blue);
       font-weight: 700;
-      margin: 18px 0 10px 0;
+      margin: 16px 0 10px 0;
       padding-top: 12px;
       border-top: 1px solid var(--border);
     }
@@ -125,7 +113,7 @@
     }
 
     .control-group {
-      margin-bottom: 12px;
+      margin-bottom: 11px;
     }
 
     .control-row {
@@ -137,7 +125,7 @@
     label {
       display: flex;
       justify-content: space-between;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--muted);
       margin-bottom: 4px;
     }
@@ -152,9 +140,9 @@
       background: var(--bg);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 7px 10px;
+      padding: 7px 9px;
       border-radius: 6px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
     }
 
@@ -165,7 +153,7 @@
 
     input[type="range"] {
       width: 100%;
-      accent-color: var(--accent);
+      accent-color: var(--blue);
       cursor: pointer;
     }
 
@@ -178,15 +166,15 @@
       padding: 8px 10px;
       border-radius: 6px;
       border: 1px solid var(--border);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text);
       cursor: pointer;
     }
 
     .checkbox-row input {
-      accent-color: var(--accent);
-      width: 16px;
-      height: 16px;
+      accent-color: var(--blue);
+      width: 15px;
+      height: 15px;
       cursor: pointer;
     }
 
@@ -201,57 +189,66 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 16px;
-    }
-
-    .kpi-card.winner {
-      border-color: var(--accent);
-      background: linear-gradient(180deg, rgba(34, 197, 94, 0.12) 0%, var(--surface) 100%);
+      padding: 15px;
     }
 
     .kpi-title {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .kpi-value {
-      font-size: 1.4rem;
+      font-size: 1.32rem;
       font-weight: 700;
       color: var(--text);
+      font-variant-numeric: tabular-nums;
     }
 
     .kpi-sub {
-      font-size: 0.8rem;
-      color: var(--accent);
+      font-size: 0.78rem;
+      color: var(--muted);
       margin-top: 4px;
-      font-weight: 500;
     }
 
-    .kpi-sub.muted {
+    .card-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card-block h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .card-block p.desc {
+      font-size: 0.82rem;
       color: var(--muted);
+      margin-bottom: 14px;
     }
 
     .table-wrapper {
       overflow-x: auto;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin-bottom: 20px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.86rem;
+      font-size: 0.84rem;
     }
 
     th, td {
-      padding: 11px 14px;
+      padding: 10px 12px;
       text-align: right;
       border-bottom: 1px solid var(--border);
+      font-variant-numeric: tabular-nums;
     }
 
     th:first-child, td:first-child {
@@ -269,7 +266,7 @@
       background: rgba(56, 189, 248, 0.08);
       color: var(--blue);
       font-weight: 700;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -279,34 +276,23 @@
       background: rgba(255, 255, 255, 0.02);
     }
 
-    tr.final-row td {
-      font-weight: 700;
-      font-size: 0.92rem;
-      background: rgba(34, 197, 94, 0.08);
-      color: #86efac;
-    }
-
-    tr.final-row-alt td {
-      font-weight: 700;
-      font-size: 0.92rem;
-      background: rgba(148, 163, 184, 0.06);
+    tr.regime-row td {
+      font-weight: 600;
     }
 
     .neg {
       color: var(--danger);
     }
 
-    .chart-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-    }
-
-    .chart-box h3 {
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-      color: var(--text);
+    .badge-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--surface-alt);
+      color: var(--muted);
+      margin-left: 6px;
+      font-weight: 500;
     }
 
     .bar-group {
@@ -322,16 +308,22 @@
 
     .bar-row {
       display: grid;
-      grid-template-columns: 195px 1fr 110px;
+      grid-template-columns: 235px 1fr 125px;
       align-items: center;
       gap: 10px;
       margin-bottom: 6px;
       font-size: 0.8rem;
     }
 
+    @media (max-width: 640px) {
+      .bar-row {
+        grid-template-columns: 140px 1fr 95px;
+      }
+    }
+
     .bar-track {
       background: var(--bg);
-      height: 16px;
+      height: 15px;
       border-radius: 4px;
       overflow: hidden;
       border: 1px solid var(--border);
@@ -349,10 +341,21 @@
       font-variant-numeric: tabular-nums;
     }
 
+    .horizon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+      background: var(--bg);
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
     .note {
       font-size: 0.78rem;
       color: var(--muted);
-      margin-top: 14px;
+      margin-top: 12px;
       line-height: 1.45;
     }
   </style>
@@ -361,16 +364,16 @@
   <div class="container">
     <header>
       <div>
-        <h1>Simulador Tributário — Agro Tycoon (Steam)</h1>
-        <p>Comparativo interativo: Simples Nacional (Anexo III Fator R vs. Anexo V) vs. Lucro Presumido (CNAE 6203-1/00)</p>
+        <h1>Simulador Tributário & Cauda Longa — Agro Tycoon</h1>
+        <p>Comparativo factual de 6 modelos tributários no lançamento e acumulado de 1 a 2 anos pós-lançamento</p>
       </div>
       <button class="btn-reset" onclick="resetDefaults()">Restaurar Padrões</button>
     </header>
 
     <div class="grid-layout">
-      <!-- Painel de Controles -->
+      <!-- Painel Lateral de Parâmetros -->
       <aside class="panel">
-        <div class="section-divider">1. Vendas & Preços</div>
+        <div class="section-divider">1. Lançamento & Preços</div>
 
         <div class="control-group">
           <label>Wishlists no Lançamento <span class="val-badge" id="lblWishlists">5.400</span></label>
@@ -395,7 +398,7 @@
             <input type="number" id="fxRate" value="5.90" step="0.05" oninput="calculate()" />
           </div>
           <div class="control-group">
-            <label>Refunds / Devol. (%)</label>
+            <label>Refunds (%)</label>
             <input type="number" id="refundPct" value="0" step="0.5" min="0" max="50" oninput="calculate()" />
           </div>
         </div>
@@ -411,8 +414,8 @@
             <input type="number" id="shareBr" value="16.16" step="0.5" min="0" max="100" oninput="calculate()" />
           </div>
         </div>
-        <div style="font-size:0.78rem; color:var(--muted); margin-bottom:6px;">
-          Resto do Mundo (Europa/Ásia/etc.): <strong id="lblShareOther" style="color:var(--text);">70,85%</strong>
+        <div style="font-size:0.78rem; color:var(--muted); margin-bottom:4px;">
+          Resto do Mundo: <strong id="lblShareOther" style="color:var(--text);">70,85%</strong>
         </div>
 
         <div class="section-divider">3. Taxas Steam, IRS & Câmbio</div>
@@ -431,7 +434,7 @@
           <input type="number" id="fxSpread" value="1.0" step="0.1" oninput="calculate()" />
         </div>
 
-        <div class="section-divider">4. Alíquotas Brasil (Exportação)</div>
+        <div class="section-divider">4. Alíquotas dos Regimes (%)</div>
         <div class="control-row">
           <div class="control-group">
             <label>Simples Anexo III (%)</label>
@@ -444,44 +447,104 @@
         </div>
         <div class="control-row">
           <div class="control-group">
-            <label>Presumido IRPJ+CSLL (%)</label>
-            <input type="number" id="lpRate" value="7.68" step="0.1" oninput="calculate()" />
+            <label>Presumido 32% (%)</label>
+            <input type="number" id="lpSrvRate" value="7.68" step="0.1" oninput="calculate()" />
           </div>
           <div class="control-group">
-            <label>Honorário Contábil (R$)</label>
-            <input type="number" id="accountingFee" value="0" step="50" oninput="calculate()" />
+            <label>Presumido 8%/12% (%)</label>
+            <input type="number" id="lpMerRate" value="2.28" step="0.1" oninput="calculate()" />
+          </div>
+        </div>
+
+        <div class="section-divider">5. Custos Contábeis Mensais (R$)</div>
+        <div class="control-row">
+          <div class="control-group">
+            <label>Contab. Simples (R$)</label>
+            <input type="number" id="accSn" value="350" step="50" oninput="calculate()" />
+          </div>
+          <div class="control-group">
+            <label>Contab. Presumido (R$)</label>
+            <input type="number" id="accLp" value="600" step="50" oninput="calculate()" />
           </div>
         </div>
 
         <label class="checkbox-row">
           <input type="checkbox" id="cltCeiling" checked onchange="calculate()" />
-          <span>Já recolho teto do INSS na CLT (sem 11% INSS no pró-labore)</span>
+          <span>Já recolho teto INSS na CLT (sem 11% INSS no pró-labore)</span>
         </label>
       </aside>
 
-      <!-- Área Principal de Resultados -->
+      <!-- Área Principal -->
       <main>
         <div class="kpi-grid" id="kpiGrid"></div>
 
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Linha do Fluxo / Regime Tributário</th>
-                <th>Conservador (10% conv.)</th>
-                <th>Base (15% conv.)</th>
-                <th>Otimista (20% conv.)</th>
-              </tr>
-            </thead>
-            <tbody id="tableBody"></tbody>
-          </table>
+        <!-- Seção 1: Tabela Comparativa no Lançamento -->
+        <div class="card-block">
+          <h2>Comparativo de Regimes — Mês de Lançamento (Primeira Semana / Mês 1)</h2>
+          <p class="desc">Valores líquidos após descontos da Steam, retenção IRS nos EUA, spread cambial, impostos do regime e mensalidade contábil do mês.</p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Linha do Fluxo / Regime Tributário</th>
+                  <th>Conservador (10% conv.)</th>
+                  <th>Base (15% conv.)</th>
+                  <th>Otimista (20% conv.)</th>
+                </tr>
+              </thead>
+              <tbody id="launchTableBody"></tbody>
+            </table>
+          </div>
         </div>
 
-        <div class="chart-box">
-          <h3>Comparativo Visual — Líquido Final no Caixa da Empresa (R$)</h3>
-          <div id="chartContainer"></div>
+        <!-- Seção 2: Gráfico de Barras Lançamento -->
+        <div class="card-block">
+          <h2>Distribuição Visual no Lançamento (Líquido Final em R$)</h2>
+          <p class="desc">Comparação direta entre os 6 enquadramentos no cenário Base (15% de conversão das wishlists).</p>
+          <div id="launchChartContainer"></div>
+        </div>
+
+        <!-- Seção 3: Projeção 1 a 2 Anos Pós-Lançamento -->
+        <div class="card-block">
+          <h2>Projeção Acumulada Pós-Lançamento (1 a 2 Anos — Cenário Base)</h2>
+          <p class="desc">Simula a cauda longa de vendas na Steam (Ano 1 e Ano 2), aplicando descontos médios de Seasonal Sales, diluição mensal do pró-labore (reduzindo IRRF nos meses pós-lançamento) e custo acumulado de contabilidade em 12 e 24 meses.</p>
+
+          <div class="horizon-grid">
+            <div class="control-group" style="margin:0;">
+              <label>Multiplicador Vendas Ano 1 (x Mês 1)</label>
+              <input type="number" id="y1Mult" value="3.5" step="0.25" min="1" oninput="calculate()" />
+            </div>
+            <div class="control-group" style="margin:0;">
+              <label>Desconto Médio Ano 1 (%)</label>
+              <input type="number" id="y1Disc" value="15" step="5" min="0" max="80" oninput="calculate()" />
+            </div>
+            <div class="control-group" style="margin:0;">
+              <label>Multiplicador Vendas Ano 2 (x Mês 1)</label>
+              <input type="number" id="y2Mult" value="1.5" step="0.25" min="0" oninput="calculate()" />
+            </div>
+            <div class="control-group" style="margin:0;">
+              <label>Desconto Médio Ano 2 (%)</label>
+              <input type="number" id="y2Disc" value="30" step="5" min="0" max="80" oninput="calculate()" />
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Regime Tributário / Horizonte</th>
+                  <th>Acumulado Ano 1 (12 meses)</th>
+                  <th>Apenas Ano 2 (Meses 13–24)</th>
+                  <th>Acumulado Total (24 meses)</th>
+                  <th>Retenção Líquida s/ Bruto</th>
+                </tr>
+              </thead>
+              <tbody id="longTailTableBody"></tbody>
+            </table>
+          </div>
+
           <p class="note">
-            * Premissas: Toda remessa recebida da Valve (EUA) entra como exportação de software (isenta de PIS, COFINS e ISS). No Simples Nacional Anexo III, aplica-se pró-labore de 28% da NFS-e para atingir o Fator R; quando marcado o teto INSS via CLT, considera-se apenas estimativa de IRRF progressivo sobre o pró-labore acima de R$ 5.000. No Lucro Presumido, inclui-se automaticamente adicional de 10% de IRPJ caso o lucro presumido exceda R$ 20.000/mês.
+            * Notas técnicas: (1) <strong>Presumido Mercadoria (8%/12%)</strong> refere-se à tese da COSIT 434/2017 para software de prateleira, que hoje possui risco de autuação após entendimento do STF (ADIs 1.945 e 5.659) e Receita Federal (COSIT 36/2023 e 75/2023). (2) <strong>Simples Anexo III</strong> exige pró-labore de 28% do faturamento bruto mensal (Fator R); nos meses de cauda longa (meses 2 a 24), como a receita mensal é diluída, o pró-labore tende a ficar abaixo da faixa de isenção do IRRF (R$ 5.000), reduzindo o encargo pessoal. (3) <strong>Pessoa Física (Carnê-Leão)</strong> aplica tabela progressiva de até 27,5% sobre a fatia não-EUA e compensa o imposto pago nos EUA na fatia americana, sem custo contábil mensal.
           </p>
         </div>
       </main>
@@ -492,6 +555,7 @@
     const fmtBRL = (v) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     const fmtUSD = (v) => "US$ " + v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const fmtInt = (v) => Math.round(v).toLocaleString("pt-BR");
+    const fmtPct = (v) => v.toFixed(1).replace(".", ",") + "%";
 
     function syncInput(id, val) {
       document.getElementById(id).value = val;
@@ -518,21 +582,33 @@
       document.getElementById("fxSpread").value = 1.0;
       document.getElementById("sn3Rate").value = 3.10;
       document.getElementById("sn5Rate").value = 9.50;
-      document.getElementById("lpRate").value = 7.68;
-      document.getElementById("accountingFee").value = 0;
+      document.getElementById("lpSrvRate").value = 7.68;
+      document.getElementById("lpMerRate").value = 2.28;
+      document.getElementById("accSn").value = 350;
+      document.getElementById("accLp").value = 600;
+      document.getElementById("y1Mult").value = 3.5;
+      document.getElementById("y1Disc").value = 15;
+      document.getElementById("y2Mult").value = 1.5;
+      document.getElementById("y2Disc").value = 30;
       document.getElementById("cltCeiling").checked = true;
       calculate();
     }
 
-    function calcIrrf(proLabore, hasCltCeiling) {
+    function calcProLaboreCharges(proLabore, hasCltCeiling) {
       const inss = hasCltCeiling ? 0 : Math.min(proLabore * 0.11, 908.85);
       const base = proLabore - inss;
-      // Estimativa simplificada tabela IRRF (isenção até R$ 5.000)
-      let irrf = 0;
+      const irrf = base > 5000 ? (base - 5000) * 0.15 : 0;
+      return inss + irrf;
+    }
+
+    function calcPfTax(nonUsInvoiceBrl, hasCltCeiling) {
+      const inssPf = hasCltCeiling ? 0 : Math.min(nonUsInvoiceBrl * 0.20, 1652.46);
+      const base = Math.max(0, nonUsInvoiceBrl - inssPf);
+      let irpf = 0;
       if (base > 5000) {
-        irrf = (base - 5000) * 0.15;
+        irpf = Math.max(0, base * 0.275 - 908.73);
       }
-      return { inss, irrf };
+      return inssPf + irpf;
     }
 
     function calculate() {
@@ -555,14 +631,22 @@
 
       const sn3Rate = (parseFloat(document.getElementById("sn3Rate").value) || 0) / 100;
       const sn5Rate = (parseFloat(document.getElementById("sn5Rate").value) || 0) / 100;
-      const lpRate = (parseFloat(document.getElementById("lpRate").value) || 0) / 100;
-      const accountingFee = parseFloat(document.getElementById("accountingFee").value) || 0;
+      const lpSrvRate = (parseFloat(document.getElementById("lpSrvRate").value) || 0) / 100;
+      const lpMerRate = (parseFloat(document.getElementById("lpMerRate").value) || 0) / 100;
+
+      const accSn = parseFloat(document.getElementById("accSn").value) || 0;
+      const accLp = parseFloat(document.getElementById("accLp").value) || 0;
       const hasCltCeiling = document.getElementById("cltCeiling").checked;
 
+      const y1Mult = parseFloat(document.getElementById("y1Mult").value) || 0;
+      const y1Disc = (parseFloat(document.getElementById("y1Disc").value) || 0) / 100;
+      const y2Mult = parseFloat(document.getElementById("y2Mult").value) || 0;
+      const y2Disc = (parseFloat(document.getElementById("y2Disc").value) || 0) / 100;
+
       const convRates = [
-        { label: "Conservador (10% conv.)", rate: 0.10 },
-        { label: "Base (15% conv.)", rate: 0.15 },
-        { label: "Otimista (20% conv.)", rate: 0.20 }
+        { label: "Conservador (10%)", rate: 0.10 },
+        { label: "Base (15%)", rate: 0.15 },
+        { label: "Otimista (20%)", rate: 0.20 }
       ];
 
       const scenarios = convRates.map((c) => {
@@ -579,6 +663,7 @@
         const grossBrUsd = copiesBr * priceBrInUsd;
         const grossOtherUsd = copiesOther * priceUsd;
         const grossTotalUsd = grossUsUsd + grossBrUsd + grossOtherUsd;
+        const grossTotalBrl = grossTotalUsd * fxRate;
 
         const steamFeeUsd = grossTotalUsd * steamCut;
         const afterSteamUs = grossUsUsd * (1 - steamCut);
@@ -589,98 +674,144 @@
 
         const invoiceBrl = remittanceUsd * fxRate;
         const spreadBrl = invoiceBrl * fxSpread;
-        const netBankBeforeTaxBrl = invoiceBrl - spreadBrl;
+        const netBankBrl = invoiceBrl - spreadBrl;
 
         // 1. Simples Nacional Anexo III (Fator R)
-        const sn3DasBrl = invoiceBrl * sn3Rate;
-        const proLaboreBrl = invoiceBrl * 0.28;
-        const { inss: proLaboreInss, irrf: proLaboreIrrf } = calcIrrf(proLaboreBrl, hasCltCeiling);
-        const sn3NetBrl = netBankBeforeTaxBrl - sn3DasBrl - proLaboreInss - proLaboreIrrf - accountingFee;
+        const sn3Das = invoiceBrl * sn3Rate;
+        const sn3PlCharges = calcProLaboreCharges(invoiceBrl * 0.28, hasCltCeiling);
+        const sn3Net = netBankBrl - sn3Das - sn3PlCharges - accSn;
 
         // 2. Simples Nacional Anexo V
-        const sn5DasBrl = invoiceBrl * sn5Rate;
-        const sn5NetBrl = netBankBeforeTaxBrl - sn5DasBrl - accountingFee;
+        const sn5Das = invoiceBrl * sn5Rate;
+        const sn5Net = netBankBrl - sn5Das - accSn;
 
-        // 3. Lucro Presumido Padrão (32% presunção -> 7.68% + adicional IRPJ 10% sobre lucro presumido > R$ 20k/mês)
-        const lpAddIrpj = Math.max(0, (invoiceBrl * 0.32 - 20000) * 0.10);
-        const lpStdTaxBrl = invoiceBrl * lpRate + lpAddIrpj;
-        const lpStdNetBrl = netBankBeforeTaxBrl - lpStdTaxBrl - accountingFee;
+        // 3. Lucro Presumido Serviço Padrão (32%)
+        const lpSrvAddIrpj = Math.max(0, (invoiceBrl * 0.32 - 20000) * 0.10);
+        const lpSrvTax = invoiceBrl * lpSrvRate + lpSrvAddIrpj;
+        const lpSrvNet = netBankBrl - lpSrvTax - accLp;
 
-        // 4. Lucro Presumido com Compensação IRS EUA (abate IRPJ/CSLL da fatia EUA)
-        const nonUsInvoiceBrl = afterSteamNonUs * fxRate;
-        const lpOffsetAddIrpj = Math.max(0, (nonUsInvoiceBrl * 0.32 - 20000) * 0.10);
-        const lpOffsetTaxBrl = nonUsInvoiceBrl * lpRate + lpOffsetAddIrpj;
-        const lpOffsetNetBrl = netBankBeforeTaxBrl - lpOffsetTaxBrl - accountingFee;
+        // 4. Lucro Presumido c/ Abatimento EUA
+        const nonUsInvBrl = afterSteamNonUs * fxRate;
+        const lpOffAddIrpj = Math.max(0, (nonUsInvBrl * 0.32 - 20000) * 0.10);
+        const lpOffTax = nonUsInvBrl * lpSrvRate + lpOffAddIrpj;
+        const lpOffNet = netBankBrl - lpOffTax - accLp;
+
+        // 5. Lucro Presumido Mercadoria (8% / 12%)
+        const lpMerAddIrpj = Math.max(0, (invoiceBrl * 0.08 - 20000) * 0.10);
+        const lpMerTax = invoiceBrl * lpMerRate + lpMerAddIrpj;
+        const lpMerNet = netBankBrl - lpMerTax - accLp;
+
+        // 6. Pessoa Física (Carnê-Leão)
+        const pfTax = calcPfTax(nonUsInvBrl, hasCltCeiling);
+        const pfNet = netBankBrl - pfTax;
 
         return {
-          label: c.label,
-          netCopies,
-          copiesUs,
-          copiesBr,
-          copiesOther,
-          grossTotalUsd,
-          steamFeeUsd,
-          irsUsd,
-          remittanceUsd,
-          invoiceBrl,
-          spreadBrl,
-          netBankBeforeTaxBrl,
-          sn3DasBrl,
-          proLaboreBrl,
-          proLaboreCharges: proLaboreInss + proLaboreIrrf,
-          sn3NetBrl,
-          sn5DasBrl,
-          sn5NetBrl,
-          lpStdTaxBrl,
-          lpStdNetBrl,
-          lpOffsetTaxBrl,
-          lpOffsetNetBrl
+          netCopies, copiesUs, copiesBr, copiesOther,
+          grossTotalUsd, grossTotalBrl, steamFeeUsd, irsUsd, remittanceUsd,
+          invoiceBrl, nonUsInvBrl, spreadBrl, netBankBrl,
+          sn3Das, sn3PlCharges, sn3Net,
+          sn5Das, sn5Net,
+          lpSrvTax, lpSrvNet,
+          lpOffTax, lpOffNet,
+          lpMerTax, lpMerNet,
+          pfTax, pfNet
         };
       });
 
-      renderKPIs(scenarios[1]);
-      renderTable(scenarios);
-      renderChart(scenarios);
+      const base = scenarios[1];
+
+      // Projeção 1 a 2 anos (sobre cenário Base)
+      const y1Factor = y1Mult * (1 - y1Disc);
+      const y2Factor = y2Mult * (1 - y2Disc);
+
+      const y1Copies = Math.round(base.netCopies * y1Mult);
+      const y2Copies = Math.round(base.netCopies * y2Mult);
+
+      const y1GrossBrl = base.grossTotalBrl * y1Factor;
+      const y2GrossBrl = base.grossTotalBrl * y2Factor;
+      const tot24GrossBrl = y1GrossBrl + y2GrossBrl;
+
+      const y1InvBrl = base.invoiceBrl * y1Factor;
+      const y2InvBrl = base.invoiceBrl * y2Factor;
+
+      const y1NonUsInvBrl = base.nonUsInvBrl * y1Factor;
+      const y2NonUsInvBrl = base.nonUsInvBrl * y2Factor;
+
+      const y1BankBrl = base.netBankBrl * y1Factor;
+      const y2BankBrl = base.netBankBrl * y2Factor;
+
+      // No Simples Anexo III, o mês 1 tem concentração de receita (gera IRRF), enquanto nos 11 meses seguintes a receita dilui
+      const y1TailInvMonthly = Math.max(0, y1InvBrl - base.invoiceBrl) / 11;
+      const y1TailPlCharges = calcProLaboreCharges(y1TailInvMonthly * 0.28, hasCltCeiling) * 11;
+      const y1Sn3Net = y1BankBrl - (y1InvBrl * sn3Rate) - (base.sn3PlCharges + y1TailPlCharges) - (accSn * 12);
+
+      const y2InvMonthly = y2InvBrl / 12;
+      const y2PlCharges = calcProLaboreCharges(y2InvMonthly * 0.28, hasCltCeiling) * 12;
+      const y2Sn3Net = y2BankBrl - (y2InvBrl * sn3Rate) - y2PlCharges - (accSn * 12);
+
+      // Simples Anexo V
+      const y1Sn5Net = y1BankBrl - (y1InvBrl * sn5Rate) - (accSn * 12);
+      const y2Sn5Net = y2BankBrl - (y2InvBrl * sn5Rate) - (accSn * 12);
+
+      // Lucro Presumido Padrão (32%)
+      const y1LpSrvNet = y1BankBrl - (y1InvBrl * lpSrvRate) - (accLp * 12);
+      const y2LpSrvNet = y2BankBrl - (y2InvBrl * lpSrvRate) - (accLp * 12);
+
+      // Lucro Presumido c/ Abatimento EUA
+      const y1LpOffNet = y1BankBrl - (y1NonUsInvBrl * lpSrvRate) - (accLp * 12);
+      const y2LpOffNet = y2BankBrl - (y2NonUsInvBrl * lpSrvRate) - (accLp * 12);
+
+      // Lucro Presumido Mercadoria (8%/12%)
+      const y1LpMerNet = y1BankBrl - (y1InvBrl * lpMerRate) - (accLp * 12);
+      const y2LpMerNet = y2BankBrl - (y2InvBrl * lpMerRate) - (accLp * 12);
+
+      // Pessoa Física (Carnê-Leão mensal diluído nos meses pós-lançamento)
+      const y1TailNonUsMonthly = Math.max(0, y1NonUsInvBrl - base.nonUsInvBrl) / 11;
+      const y1PfNet = y1BankBrl - (base.pfTax + calcPfTax(y1TailNonUsMonthly, hasCltCeiling) * 11);
+      const y2PfNet = y2BankBrl - (calcPfTax(y2NonUsInvBrl / 12, hasCltCeiling) * 12);
+
+      const longTailRows = [
+        { name: "Lucro Presumido — Mercadoria (8%/12%)", y1: y1LpMerNet, y2: y2LpMerNet },
+        { name: "Simples Nacional — Anexo III (Fator R)", y1: y1Sn3Net, y2: y2Sn3Net },
+        { name: "Lucro Presumido — Serviço c/ Abatimento EUA", y1: y1LpOffNet, y2: y2LpOffNet },
+        { name: "Lucro Presumido — Serviço Padrão (32%)", y1: y1LpSrvNet, y2: y2LpSrvNet },
+        { name: "Simples Nacional — Anexo V (Sem Fator R)", y1: y1Sn5Net, y2: y2Sn5Net },
+        { name: "Pessoa Física — Carnê-Leão (Sem CNPJ)", y1: y1PfNet, y2: y2PfNet }
+      ];
+
+      renderKPIs(base, y1Copies + y2Copies, tot24GrossBrl);
+      renderLaunchTable(scenarios);
+      renderLaunchChart(base);
+      renderLongTailTable(longTailRows, tot24GrossBrl);
     }
 
-    function renderKPIs(base) {
-      const regimes = [
-        { name: "Simples Anexo III (Fator R)", val: base.sn3NetBrl },
-        { name: "Simples Anexo V (Sem Fator R)", val: base.sn5NetBrl },
-        { name: "Lucro Presumido Padrão", val: base.lpStdNetBrl },
-        { name: "Presumido c/ Abatimento EUA", val: base.lpOffsetNetBrl }
-      ];
-      regimes.sort((a, b) => b.val - a.val);
-      const best = regimes[0];
-      const diffVsLp = base.sn3NetBrl - base.lpStdNetBrl;
-
+    function renderKPIs(base, tot24Copies, tot24GrossBrl) {
+      const takeHomeBankPct = (base.netBankBrl / base.grossTotalBrl) * 100;
       document.getElementById("kpiGrid").innerHTML = `
         <div class="kpi-card">
-          <div class="kpi-title">Vendas Base (15% conv.)</div>
+          <div class="kpi-title">Lançamento Base (15%)</div>
           <div class="kpi-value">${fmtInt(base.netCopies)} cópias</div>
-          <div class="kpi-sub muted">Bruto: ${fmtUSD(base.grossTotalUsd)}</div>
+          <div class="kpi-sub">Bruto: ${fmtUSD(base.grossTotalUsd)}</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-title">Remessa Líquida Valve</div>
           <div class="kpi-value">${fmtUSD(base.remittanceUsd)}</div>
-          <div class="kpi-sub muted">NFS-e: ${fmtBRL(base.invoiceBrl)}</div>
-        </div>
-        <div class="kpi-card winner">
-          <div class="kpi-title">Melhor Regime (Cenário Base)</div>
-          <div class="kpi-value">${fmtBRL(best.val)}</div>
-          <div class="kpi-sub">${best.name}</div>
+          <div class="kpi-sub">NFS-e: ${fmtBRL(base.invoiceBrl)}</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-title">Simples III vs. Presumido</div>
-          <div class="kpi-value" style="color:${diffVsLp >= 0 ? 'var(--accent)' : 'var(--danger)'}">
-            ${diffVsLp >= 0 ? "+" : ""}${fmtBRL(diffVsLp)}
-          </div>
-          <div class="kpi-sub muted">${diffVsLp >= 0 ? "Economia no Simples Anexo III" : "Vantagem no Lucro Presumido"}</div>
+          <div class="kpi-title">Chega no Banco (Pré-IR)</div>
+          <div class="kpi-value">${fmtBRL(base.netBankBrl)}</div>
+          <div class="kpi-sub">${fmtPct(takeHomeBankPct)} do bruto pago pelo jogador</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Volume Projetado (24 Meses)</div>
+          <div class="kpi-value">${fmtInt(tot24Copies)} cópias</div>
+          <div class="kpi-sub">Bruto 2 anos: ${fmtBRL(tot24GrossBrl)}</div>
         </div>
       `;
     }
 
-    function renderTable(s) {
+    function renderLaunchTable(s) {
       const row = (title, fn, cls = "") => `
         <tr class="${cls}">
           <td>${title}</td>
@@ -690,65 +821,67 @@
         </tr>
       `;
 
-      document.getElementById("tableBody").innerHTML = `
+      document.getElementById("launchTableBody").innerHTML = `
         ${row("Cópias Líquidas (EUA / BR / Resto)", (x) => `<strong>${fmtInt(x.netCopies)}</strong> (${x.copiesUs} / ${x.copiesBr} / ${x.copiesOther})`)}
         ${row("Receita Bruta Steam (US$)", (x) => fmtUSD(x.grossTotalUsd))}
-        ${row("(-) Taxa Steam", (x) => `<span class="neg">-${fmtUSD(x.steamFeeUsd)}</span>`)}
-        ${row("(-) Retenção IRS EUA (apenas fatia EUA)", (x) => `<span class="neg">-${fmtUSD(x.irsUsd)}</span>`)}
-        ${row("(=) Remessa Valve / Valor NFS-e (R$)", (x) => `${fmtUSD(x.remittanceUsd)} (${fmtBRL(x.invoiceBrl)})`, "subtotal")}
+        ${row("(-) Taxa Steam + IRS EUA", (x) => `<span class="neg">-${fmtUSD(x.steamFeeUsd + x.irsUsd)}</span>`)}
+        ${row("(=) Remessa Valve / Valor NFS-e (R$)", (x) => fmtBRL(x.invoiceBrl), "subtotal")}
         ${row("(-) Spread Câmbio", (x) => `<span class="neg">-${fmtBRL(x.spreadBrl)}</span>`)}
-        ${row("(=) Entrada em Conta PJ antes de Impostos", (x) => fmtBRL(x.netBankBeforeTaxBrl), "subtotal")}
+        ${row("(=) Entrada em Conta antes de Impostos/Contab.", (x) => fmtBRL(x.netBankBrl), "subtotal")}
 
-        <tr class="group-header"><td colspan="4">1. Simples Nacional — Anexo III (Fator R >= 28%)</td></tr>
-        ${row("(-) DAS Exportação", (x) => `<span class="neg">-${fmtBRL(x.sn3DasBrl)}</span>`)}
-        ${row("(-) Encargos s/ Pró-labore (28% fat.)", (x) => `<span class="neg">-${fmtBRL(x.proLaboreCharges)}</span>`)}
-        ${row("(=) Líquido Final — Simples Anexo III", (x) => fmtBRL(x.sn3NetBrl), "final-row")}
-
-        <tr class="group-header"><td colspan="4">2. Simples Nacional — Anexo V (Sem Fator R)</td></tr>
-        ${row("(-) DAS Exportação", (x) => `<span class="neg">-${fmtBRL(x.sn5DasBrl)}</span>`)}
-        ${row("(=) Líquido Final — Simples Anexo V", (x) => fmtBRL(x.sn5NetBrl), "final-row-alt")}
-
-        <tr class="group-header"><td colspan="4">3. Lucro Presumido (Base 32% — Licenciamento)</td></tr>
-        ${row("(-) IRPJ + CSLL Exportação", (x) => `<span class="neg">-${fmtBRL(x.lpStdTaxBrl)}</span>`)}
-        ${row("(=) Líquido Final — Lucro Presumido Padrão", (x) => fmtBRL(x.lpStdNetBrl), "final-row-alt")}
-
-        <tr class="group-header"><td colspan="4">4. Lucro Presumido (Com Compensação IRS EUA)</td></tr>
-        ${row("(-) IRPJ + CSLL apenas s/ fatia Não-EUA", (x) => `<span class="neg">-${fmtBRL(x.lpOffsetTaxBrl)}</span>`)}
-        ${row("(=) Líquido Final — Presumido c/ Abatimento", (x) => fmtBRL(x.lpOffsetNetBrl), "final-row-alt")}
+        <tr class="group-header"><td colspan="4">Líquido Final por Enquadramento (Já descontando Impostos, Pró-labore e Contabilidade)</td></tr>
+        ${row("1. Lucro Presumido — Mercadoria (8%/12%)", (x) => fmtBRL(x.lpMerNet), "regime-row")}
+        ${row("2. Simples Nacional — Anexo III (Fator R)", (x) => fmtBRL(x.sn3Net), "regime-row")}
+        ${row("3. Lucro Presumido — Serviço c/ Abatimento EUA", (x) => fmtBRL(x.lpOffNet), "regime-row")}
+        ${row("4. Lucro Presumido — Serviço Padrão (32%)", (x) => fmtBRL(x.lpSrvNet), "regime-row")}
+        ${row("5. Simples Nacional — Anexo V (Sem Fator R)", (x) => fmtBRL(x.sn5Net), "regime-row")}
+        ${row("6. Pessoa Física — Carnê-Leão (Sem CNPJ)", (x) => fmtBRL(x.pfNet), "regime-row")}
       `;
     }
 
-    function renderChart(scenarios) {
-      const maxVal = Math.max(...scenarios.map((s) => Math.max(s.sn3NetBrl, s.sn5NetBrl, s.lpStdNetBrl, s.lpOffsetNetBrl, 1)));
+    function renderLaunchChart(base) {
+      const items = [
+        { label: "1. Presumido Mercadoria (8%/12%)", val: base.lpMerNet, color: "#38bdf8" },
+        { label: "2. Simples Anexo III (Fator R)", val: base.sn3Net, color: "#22c55e" },
+        { label: "3. Presumido c/ Abatimento EUA", val: base.lpOffNet, color: "#818cf8" },
+        { label: "4. Presumido Serviço Padrão (32%)", val: base.lpSrvNet, color: "#a78bfa" },
+        { label: "5. Simples Anexo V", val: base.sn5Net, color: "#f59e0b" },
+        { label: "6. Pessoa Física (Carnê-Leão)", val: base.pfNet, color: "#f472b6" }
+      ];
+      const maxVal = Math.max(...items.map((i) => i.val), 1);
 
-      const html = scenarios.map((s) => {
-        const bars = [
-          { label: "Simples Anexo III (Fator R)", val: s.sn3NetBrl, color: "#22c55e" },
-          { label: "Presumido c/ Abatimento EUA", val: s.lpOffsetNetBrl, color: "#38bdf8" },
-          { label: "Lucro Presumido Padrão", val: s.lpStdNetBrl, color: "#a78bfa" },
-          { label: "Simples Anexo V", val: s.sn5NetBrl, color: "#f59e0b" }
-        ];
-
-        return `
-          <div class="bar-group">
-            <div class="bar-group-title">${s.label} — ${fmtInt(s.netCopies)} cópias</div>
-            ${bars.map((b) => {
-              const pct = Math.max(2, (b.val / maxVal) * 100);
-              return `
-                <div class="bar-row">
-                  <div>${b.label}</div>
-                  <div class="bar-track">
-                    <div class="bar-fill" style="width:${pct}%; background:${b.color};"></div>
-                  </div>
-                  <div class="bar-val">${fmtBRL(b.val)}</div>
+      document.getElementById("launchChartContainer").innerHTML = `
+        <div class="bar-group" style="margin-bottom:0;">
+          ${items.map((b) => {
+            const pct = Math.max(2, (b.val / maxVal) * 100);
+            return `
+              <div class="bar-row">
+                <div>${b.label}</div>
+                <div class="bar-track">
+                  <div class="bar-fill" style="width:${pct}%; background:${b.color};"></div>
                 </div>
-              `;
-            }).join("")}
-          </div>
+                <div class="bar-val">${fmtBRL(b.val)}</div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `;
+    }
+
+    function renderLongTailTable(rows, tot24GrossBrl) {
+      document.getElementById("longTailTableBody").innerHTML = rows.map((r) => {
+        const tot24 = r.y1 + r.y2;
+        const retentionPct = tot24GrossBrl > 0 ? (tot24 / tot24GrossBrl) * 100 : 0;
+        return `
+          <tr class="regime-row">
+            <td>${r.name}</td>
+            <td>${fmtBRL(r.y1)}</td>
+            <td>${fmtBRL(r.y2)}</td>
+            <td><strong>${fmtBRL(tot24)}</strong></td>
+            <td>${fmtPct(retentionPct)}</td>
+          </tr>
         `;
       }).join("");
-
-      document.getElementById("chartContainer").innerHTML = html;
     }
 
     calculate();
